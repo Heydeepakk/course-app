@@ -9,7 +9,9 @@ function Header(props) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand>Student Dashboard</Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand>Student Dashboard</Navbar.Brand>
+        </Link>
         <Link to={props.buttonLink}>
           <Button variant="outline-light" className="ms-3">
             {props.buttonText}

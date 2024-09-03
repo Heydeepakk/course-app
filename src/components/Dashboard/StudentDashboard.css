@@ -45,18 +45,6 @@
     margin: 0.25rem 0;
   }
   
-  .progress-bar {
-    background-color: #e0e0e0;
-    border-radius: 0.25rem;
-    overflow: hidden;
-    margin: 0.5rem 0;
-  }
-  
-  .progress {
-    height: 8px;
-    background-color: #3b82f6;
-    border-radius: 0.25rem;
-  }
   
   .complete-course-btn {
     background-color: #35383b;

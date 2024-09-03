@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { db, collection, getDocs, doc, updateDoc } from "../../firebaseConfig";
 import "./StudentDashboard.css";
 import { Link } from "react-router-dom";
-import Header from '../Navbar'; 
+import Header from "../Navbar";
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 const StudentDashboard = () => {
   const [courses, setCourses] = useState([]);
@@ -67,11 +68,9 @@ const StudentDashboard = () => {
                   <p>
                     <strong>Due Date:</strong> {course.dueDate || "N/A"}
                   </p>
-                  <div className="progress-bar">
-                    <div className="progress" style={{ width: "50%" }}></div>
-                  </div>
                 </div>
               </Link>
+              <ProgressBar now={course.progress} label={`${course.progress}%`} />;
               <button
                 className="complete-course-btn"
                 onClick={() => handleMarkAsCompleted(course.id)}
