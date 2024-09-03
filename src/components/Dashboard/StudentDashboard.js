@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db, collection, getDocs, doc, updateDoc } from "../../firebaseConfig";
 import "./StudentDashboard.css";
 import { Link } from "react-router-dom";
+import Header from '../Navbar'; 
 
 const StudentDashboard = () => {
   const [courses, setCourses] = useState([]);
@@ -45,6 +46,7 @@ const StudentDashboard = () => {
 
   return (
     <div>
+      <Header buttonText="Course List" buttonLink="/course" />
       <div className="student-dashboard-container">
         <h1>My Enrolled Courses</h1>
         <br />

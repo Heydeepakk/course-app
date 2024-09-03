@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db, collection, getDocs } from "../../firebaseConfig";
 import { Link } from "react-router-dom";
 import "./CourseList.css";
+import Header from '../Navbar'; 
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]);
@@ -32,23 +33,31 @@ const CourseList = () => {
   );
 
   return (
-    <div className="course-list-container">
-      <input
-        type="text"
-        placeholder="Search by course name or instructor"
-        value={search}
-        onChange={handleSearch}
-        className="search-input"
-      />
-      <div className="course-list">
-        {filteredCourses.map((course) => (
-          <div key={course.id} className="course-item">
-            <Link to={`/course/${course.id}`} className="course-link">
-              <h2>{course.name}</h2>
-              <p>{course.instructor}</p>
-            </Link>
-          </div>
-        ))}
+    <div>
+      <Header buttonText="Enrolled List" buttonLink="/" />
+      <div className="course-list-container">
+        <input
+          type="text"
+          placeholder="Search by course name or instructor"
+          value={search}
+          onChange={handleSearch}
+          className="search-input"
+        />
+        <div className="course-list">
+          {filteredCourses.length === 0 ? (
+            <p className="no-data">No data found</p>
+          ) : (
+            filteredCourses.map((course) => (
+              <div key={course.id} className="course-item">
+                <Link to={`/course/${course.id}`} className="course-link">
+                  <h2>{course.name}</h2>
+                  <p>{course.instructor}</p>
+                  <p>Enrollment Status: {course.enrollmentStatus}</p>
+                </Link>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

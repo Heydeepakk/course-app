@@ -1,12 +1,17 @@
 .course-list-container {
     padding: 1.5rem;
-    background-color:  rgb(114, 114, 114);
+    background-color:  #9341df;
     min-height: 100vh;
+  }
+  .no-data {
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.25rem;
+    padding: 2rem;
   }
   
   .search-input {
     width: 100%;
-    max-width: 600px;
     padding: 1rem;
     margin-bottom: 1.5rem;
     border: 1px solid #ccc;
@@ -17,7 +22,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    max-height: 500px; 
+    min-height: 150px; 
     overflow-y: scroll;
     padding: 1rem;
     border-radius: 8px;
@@ -32,6 +37,7 @@
     overflow: hidden;
     transition: background-color 0.3s;
     padding: 1rem;
+    mzx-width: 200px;
   }
   
   .course-item:hover {
