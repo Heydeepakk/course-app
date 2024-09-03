@@ -37,7 +37,6 @@
     overflow: hidden;
     transition: background-color 0.3s;
     padding: 1rem;
-    mzx-width: 200px;
   }
   
   .course-item:hover {
