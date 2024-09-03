@@ -1,14 +1,22 @@
-// src/components/Navbar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
 
-const Navbar = () => {
+function Header() {
   return (
-    <nav>
-      <Link to="/">Courses</Link>
-      <Link to="/dashboard">Dashboard</Link>
-    </nav>
+    <Navbar bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand >
+          Student Dashboard
+        </Navbar.Brand>
+        <Button variant="outline-light" className="ms-3">
+          Course List
+        </Button>
+        <Navbar.Toggle />
+      </Container>
+    </Navbar>
   );
-};
+}
 
-export default Navbar;
+export default Header;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { db, doc, getDoc } from '../../firebaseConfig';
+import { db, doc, getDoc, updateDoc } from '../../firebaseConfig';
 import { useParams } from 'react-router-dom';
 import './CourseDetails.css';
 
@@ -24,6 +24,16 @@ const CourseDetails = () => {
 
     fetchCourse();
   }, [id]);
+
+  const handleEnroll = async () => {
+    try {
+      const courseDoc = doc(db, 'courses', id);
+      await updateDoc(courseDoc, { enrollmentStatus: 'Open' });
+      setCourse((prevCourse) => ({ ...prevCourse, enrollmentStatus: 'Open' }));
+    } catch (error) {
+      console.error('Error updating document:', error);
+    }
+  };
 
   if (!course) return <p>Loading...</p>;
 
@@ -58,6 +68,11 @@ const CourseDetails = () => {
             })}
           </ul>
         </div>
+        {course.enrollmentStatus !== 'Open' && (
+          <button className="enroll-button" onClick={handleEnroll}>
+            Enroll the Course
+          </button>
+        )}
       </div>
     </div>
   );
