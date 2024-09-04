@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { db, doc, getDoc, updateDoc } from "../../firebaseConfig";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToEnrollmentList, selectEnrollmentList } from '../../redux/enrollmentSlice.js';
 import "./CourseDetails.css";
-import Header from "../Navbar";
+import Header from "../Header/Header.js";
 
 const CourseDetails = () => {
   const { id } = useParams();
   const [course, setCourse] = useState(null);
+  const dispatch = useDispatch();
+  const enrollmentList = useSelector(selectEnrollmentList);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -14,7 +18,7 @@ const CourseDetails = () => {
         const courseDoc = doc(db, "courses", id);
         const courseSnapshot = await getDoc(courseDoc);
         if (courseSnapshot.exists()) {
-          setCourse(courseSnapshot.data());
+          setCourse({ id, ...courseSnapshot.data() });
         } else {
           console.log("No such document!");
         }
@@ -36,7 +40,15 @@ const CourseDetails = () => {
     }
   };
 
+  const handleAddToList = () => {
+    if (course && !enrollmentList.find((c) => c.id === course.id)) {
+      dispatch(addToEnrollmentList(course));
+    }
+  };
+
   if (!course) return <p>Loading...</p>;
+
+  const isCourseInCart = enrollmentList.find((c) => c.id === course.id);
 
   return (
     <div>
@@ -59,6 +71,9 @@ const CourseDetails = () => {
           </p>
           <p>
             <strong>Schedule:</strong> {course.schedule}
+          </p>
+          <p>
+            <strong>Location:</strong> {course.location}
           </p>
           <div className="course-prerequisites">
             <strong>Prerequisites:</strong>
@@ -89,6 +104,12 @@ const CourseDetails = () => {
               Enroll the Course
             </button>
           )}
+          <button 
+            className="enroll-button" 
+            onClick={handleAddToList} 
+            disabled={isCourseInCart}>
+            {isCourseInCart ? "Added to Enrollment List" : "Add to Enrollment List"}
+          </button>
         </div>
       </div>
     </div>

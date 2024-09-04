@@ -1,25 +1,32 @@
+// src/components/StudentDashboard.js
 import React, { useState, useEffect } from "react";
-import { db, collection, getDocs, doc, updateDoc } from "../../firebaseConfig";
+import {
+  db,
+  collection,
+  onSnapshot,
+  doc,
+  updateDoc,
+  increment,
+} from "../../firebaseConfig";
 import "./StudentDashboard.css";
 import { Link } from "react-router-dom";
-import Header from "../Navbar";
+import Header from "../Header/Header";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
 const StudentDashboard = () => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    const fetchCourses = async () => {
-      const courseCollection = collection(db, "courses");
-      const courseSnapshot = await getDocs(courseCollection);
-      const courseList = courseSnapshot.docs.map((doc) => ({
+    // Real-time listener for courses
+    const unsubscribe = onSnapshot(collection(db, "courses"), (snapshot) => {
+      const courseList = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setCourses(courseList);
-    };
+    });
 
-    fetchCourses();
+    return () => unsubscribe();
   }, []);
 
   const openCourses = courses.filter(
@@ -32,16 +39,19 @@ const StudentDashboard = () => {
       await updateDoc(courseRef, {
         enrollmentStatus: "Closed",
       });
-      // Update local state
-      setCourses(
-        courses.map((course) =>
-          course.id === courseId
-            ? { ...course, enrollmentStatus: "Closed" }
-            : course
-        )
-      );
     } catch (error) {
       console.error("Error updating course status:", error);
+    }
+  };
+
+  const handleLike = async (courseId) => {
+    try {
+      const courseRef = doc(db, "courses", courseId);
+      await updateDoc(courseRef, {
+        likes: increment(1),
+      });
+    } catch (error) {
+      console.error("Error updating likes:", error);
     }
   };
 
@@ -70,13 +80,25 @@ const StudentDashboard = () => {
                   </p>
                 </div>
               </Link>
-              <ProgressBar now={course.progress} label={`${course.progress}%`} />;
+              <ProgressBar
+                now={course.progress}
+                label={`${course.progress}%`}
+              />
+              ;
               <button
                 className="complete-course-btn"
                 onClick={() => handleMarkAsCompleted(course.id)}
               >
                 Mark as Completed
               </button>
+              {course.enrollmentStatus === "Open" && (
+                <button
+                  className="like-course-btn"
+                  onClick={() => handleLike(course.id)}
+                >
+                  🎁 Like ({course.likes})
+                </button>
+              )}
             </div>
           ))}
         </div>

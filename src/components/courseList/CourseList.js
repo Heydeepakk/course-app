@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db, collection, getDocs } from "../../firebaseConfig";
 import { Link } from "react-router-dom";
 import "./CourseList.css";
-import Header from '../Navbar'; 
+import Header from '../Header/Header'; 
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]);

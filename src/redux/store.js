@@ -1,10 +1,10 @@
 // src/redux/store.js
 import { configureStore } from '@reduxjs/toolkit';
-import courseReducer from './courseSlice';
+import enrollmentReducer from './enrollmentSlice.js';
 
 const store = configureStore({
   reducer: {
-    course: courseReducer,
+    enrollment: enrollmentReducer,
   },
 });
 

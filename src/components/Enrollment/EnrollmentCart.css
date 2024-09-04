@@ -1,0 +1,96 @@
+/* src/components/EnrollmentCart.css */
+
+.enrollment-cart {
+  padding: 2rem;
+  background-color: #9341df;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.enrollment-cart h1 {
+  color: #fff;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.cart-list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #fff;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.course-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.remove-course-button {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.remove-course-button:hover {
+  background-color: #c9302c;
+}
+
+.enroll-all-button {
+  background: linear-gradient(to right, #5cb85c, #4cae4c);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.enroll-all-button:hover {
+  background: linear-gradient(to right, #4cae4c, #3e8e41);
+}
+
+.enrollment-message {
+  margin-bottom: 1rem;
+  color: #5cb85c;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .remove-course-button {
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .enroll-all-button {
+    width: 100%;
+    padding: 1rem;
+  }
+}
