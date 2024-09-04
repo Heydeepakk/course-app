@@ -1,4 +1,3 @@
-// src/components/StudentDashboard.js
 import React, { useState, useEffect } from "react";
 import {
   db,
@@ -80,11 +79,11 @@ const StudentDashboard = () => {
                   </p>
                 </div>
               </Link>
-              <ProgressBar
+              <ProgressBar className="progressbar"
                 now={course.progress}
                 label={`${course.progress}%`}
               />
-              ;
+
               <button
                 className="complete-course-btn"
                 onClick={() => handleMarkAsCompleted(course.id)}

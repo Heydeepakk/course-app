@@ -75,11 +75,19 @@ h1 {
 .like-course-btn:hover {
   background-color: #2563eb;
 }
+.progressbar {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 
 @media (max-width: 768px) {
   .course-item {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .progressbar {
+    max-width: calc(100% - 20px);
   }
 
   .complete-course-btn,
