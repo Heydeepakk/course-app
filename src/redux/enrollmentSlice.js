@@ -13,7 +13,7 @@ const enrollmentSlice = createSlice({
       }
     },
     removeFromEnrollmentList: (state, action) => {
-      return state.filter(course => course.id !== action.payload);
+      return state.filter((course) => course.id !== action.payload);
     },
     clearEnrollmentList: () => [],
     enrollAllCourses: (state) => {
@@ -25,8 +25,12 @@ const enrollmentSlice = createSlice({
   },
 });
 
-export const { addToEnrollmentList, removeFromEnrollmentList, clearEnrollmentList, enrollAllCourses } =
-  enrollmentSlice.actions;
+export const {
+  addToEnrollmentList,
+  removeFromEnrollmentList,
+  clearEnrollmentList,
+  enrollAllCourses,
+} = enrollmentSlice.actions;
 
 export const selectEnrollmentList = (state) => state.enrollment;
 export const selectEnrollmentCount = (state) => state.enrollment.length;

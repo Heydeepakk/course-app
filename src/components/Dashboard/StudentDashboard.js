@@ -16,7 +16,7 @@ const StudentDashboard = () => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    // Real-time listener for courses
+    // Real-time listener for alll courses
     const unsubscribe = onSnapshot(collection(db, "courses"), (snapshot) => {
       const courseList = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -79,7 +79,8 @@ const StudentDashboard = () => {
                   </p>
                 </div>
               </Link>
-              <ProgressBar className="progressbar"
+              <ProgressBar
+                className="progressbar"
                 now={course.progress}
                 label={`${course.progress}%`}
               />

@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { db, doc, getDoc, updateDoc } from "../../firebaseConfig";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToEnrollmentList, selectEnrollmentList } from '../../redux/enrollmentSlice.js';
+import {
+  addToEnrollmentList,
+  selectEnrollmentList,
+} from "../../redux/enrollmentSlice.js";
 import "./CourseDetails.css";
 import Header from "../Header/Header.js";
 
@@ -104,11 +107,14 @@ const CourseDetails = () => {
               Enroll the Course
             </button>
           )}
-          <button 
-            className="enroll-button" 
-            onClick={handleAddToList} 
-            disabled={isCourseInCart}>
-            {isCourseInCart ? "Added to Enrollment List" : "Add to Enrollment List"}
+          <button
+            className="enroll-button"
+            onClick={handleAddToList}
+            disabled={isCourseInCart}
+          >
+            {isCourseInCart
+              ? "Added to Enrollment List"
+              : "Add to Enrollment List"}
           </button>
         </div>
       </div>

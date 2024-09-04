@@ -1,6 +1,5 @@
-// src/redux/store.js
-import { configureStore } from '@reduxjs/toolkit';
-import enrollmentReducer from './enrollmentSlice.js';
+import { configureStore } from "@reduxjs/toolkit";
+import enrollmentReducer from "./enrollmentSlice.js";
 
 const store = configureStore({
   reducer: {
