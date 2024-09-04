@@ -1,18 +1,17 @@
-// firebase-config.js
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, doc, getDoc,updateDoc,increment,onSnapshot  } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, doc, getDoc, updateDoc, increment, onSnapshot } from 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCuaXQRc57RQFCcabSCMIivKQS4D4jeB7U",
-    authDomain: "react-hiring.firebaseapp.com",
-    projectId: "react-hiring",
-    storageBucket: "react-hiring.appspot.com",
-    messagingSenderId: "741813755172",
-    appId: "1:741813755172:web:4323ab8439c02a2e4f67b1",
-    measurementId: "G-3SBSW1SDKS"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export { db, collection, getDocs, doc, getDoc,updateDoc, onSnapshot,increment  }; 
+export { db, collection, getDocs, doc, getDoc, updateDoc, onSnapshot, increment };
